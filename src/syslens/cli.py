@@ -3,6 +3,14 @@ from typing import Annotated
 
 import typer
 
+from syslens.system.info import (
+    get_architecture,
+    get_hostname,
+    get_kernel,
+    get_operating_system,
+    get_python_version,
+)
+
 app = typer.Typer(add_completion=False)
 
 
@@ -25,3 +33,13 @@ def main(
     ] = None,
 ) -> None:
     """Inspect system information from the command line."""
+
+
+@app.command()
+def info() -> None:
+    """Show basic system information."""
+    typer.echo(f"Hostname: {get_hostname()}")
+    typer.echo(f"Operating system: {get_operating_system()}")
+    typer.echo(f"Kernel: {get_kernel()}")
+    typer.echo(f"Architecture: {get_architecture()}")
+    typer.echo(f"Python version: {get_python_version()}")
