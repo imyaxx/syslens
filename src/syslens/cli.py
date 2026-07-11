@@ -3,9 +3,11 @@ from typing import Annotated
 
 import typer
 
+from syslens.network.cli import app as network_app
 from syslens.system.cli import app as system_app
 
 app = typer.Typer(add_completion=False)
+app.add_typer(network_app, name="network")
 app.add_typer(system_app, name="system")
 
 
